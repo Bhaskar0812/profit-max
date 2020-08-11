@@ -1,0 +1,6 @@
+{
+    "name": "bhaskar/profit-mart",
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    }
+}
