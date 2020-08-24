@@ -55,7 +55,7 @@
     $mail->Port = 465;
     $mail->setFrom('bhaskarsharmamanish@gmail.com');
     $mail->isHTML(true);
-    $mail->addAddress('bhaskarsharmamanish@gmail.com');
+    $mail->addAddress('ashastri863@gmail.com');
     $mail->Username = 'AKIAXALYIPRQEWKZMMQ5';
     $mail->Password = 'BDlD9HQjC8bX+ZL+Vpbna7WJGaUeU2uSFcN3f6W+SOaz';
     $mail->Subject = $subject;
@@ -70,9 +70,9 @@
         echo 'Email error: ' . $mail->ErrorInfo;
       } else {
         $success=1;
-        $page = $_SERVER['PHP_SELF'];
+        /*$page = $_SERVER['PHP_SELF'];
         $sec = "3";
-        header("Refresh: $sec; url=$page");
+        header("Refresh: $sec; url=$page");*/
       }
     }
 
@@ -394,7 +394,7 @@
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Welcome to profit-max</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close">&times;</button>
           </div>
 
           <!-- Modal body -->
@@ -403,11 +403,10 @@
             <img src="images/free-11.gif" class="ml-5" width="120px">
             <img src="images/free-11.gif" class="ml-5" width="120px">
             <img src="images/free-11.gif" class="ml-5" width="120px">
-            <h6 class="text-justify"><b>Free</b> all segment calls, Just inquire to us, We will ready to serve you better services absolutly free.</h6>
+            <h6 class="text-justify mt-5"><b>Free</b> all segment calls, Just inquire to us, We will ready to serve you better services absolutly free.</h6>
           </div>
-
         </div>
-      </div>
+        </div>
     </div>
 
   <!-- loader -->
@@ -425,20 +424,24 @@
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script>
     $("#please-wait").click(function(){
       this.text('Please wait...');
     })
-
-    window.onload = function () {
+    //
+      $(document).ready(function(){
         setTimeout(function () {
-            $("#myModal").show();
+            var location = window.location;
+            if(location.hash == '')
+              $("#myModal").show();
         });
-    }
+     })
+   // }
 
+    $(".close").on('click',function(e){
+      $("#myModal").hide();
+    });
   </script>
   </body>
 </html>
