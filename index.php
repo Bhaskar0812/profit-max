@@ -42,15 +42,19 @@
     $message .= "Email address: " . $mobile . "<br />";
     $message .= "Message: <br />";
     $message .= $contact_message;
-    $mail = new PHPMailer;
-    $mail->IsSMTP();
-    $mail->Host = 'brownangler.com'; 
+    $msg = "First line of text\nSecond line of text";
+
+// use wordwrap() if lines are longer than 70 characters
+    
+   $mail = new PHPMailer;
+    //$mail->IsSMTP();
+    $mail->Host = 'ssl://email-smtp.us-east-2.amazonaws.com'; 
     $mail->SMTPAuth = true;
     $mail->Port = 587;
     $mail->setFrom($email);
-    $mail->addAddress('bhaskar@ascratech.in');
-    $mail->Username = 'bhaskar@brownangler.com';
-    $mail->Password = 'Bhaskar@0812';
+    $mail->addAddress('bhaskarsharmamanish@gmail.com');
+    $mail->Username = 'AKIAXALYIPRQEWKZMMQ5';
+    $mail->Password = 'BDlD9HQjC8bX+ZL+Vpbna7WJGaUeU2uSFcN3f6W+SOaz';
     $mail->Subject = $subject;
     $mail->From = 'bhaskar@brownangler.com';
     $mail->FromName = $name;
