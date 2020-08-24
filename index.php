@@ -11,7 +11,8 @@
   require 'vendor/autoload.php';
   $mail = new PHPMailer(true);
 
-  if(!empty($_POST)) {
+  if(!empty($_POST)) {?>
+    <?php 
     $success=0;
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
@@ -31,16 +32,17 @@
       $error['email'] = "Please enter a valid email address.";
     }
     // Check Message
-    if (strlen($contact_message) < 15) {
-      $error['message'] = "Please enter your message. It should have at least 15 characters.";
+    if (strlen($contact_message) < 10) {
+      $error['message'] = "Please enter your message. It should have at least 10 characters.";
     }
        // Subject
     if ($subject == '') { $subject = "Contact Form Submission"; }
     $message ="";
     $message .= "Email from: " . $name . "<br />";
     $message .= "Email address: " . $email . "<br />";
-    $message .= "Email address: " . $mobile . "<br />";
-    $message .= "Message: <br />";
+    $message .= "mobile address: " . $mobile . "<br />";
+    $message .= "IP address: " . $_SERVER['REMOTE_ADDR'] . "<br />";
+    $message .= "User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "<br />";
     $message .= $contact_message;
     $msg = "First line of text\nSecond line of text";
 
@@ -50,17 +52,17 @@
     $mail->IsSMTP();
     $mail->Host = 'ssl://email-smtp.us-east-2.amazonaws.com'; 
     $mail->SMTPAuth = true;
-    $mail->Port = 587;
-    $mail->setFrom($email);
+    $mail->Port = 465;
+    $mail->setFrom('bhaskarsharmamanish@gmail.com');
+    $mail->isHTML(true);
     $mail->addAddress('bhaskarsharmamanish@gmail.com');
     $mail->Username = 'AKIAXALYIPRQEWKZMMQ5';
     $mail->Password = 'BDlD9HQjC8bX+ZL+Vpbna7WJGaUeU2uSFcN3f6W+SOaz';
     $mail->Subject = $subject;
-    $mail->From = 'bhaskar@brownangler.com';
+    $mail->From = 'bhaskarsharmamanish@gmail.com';
     $mail->FromName = $name;
     $mail->Body = $message;
     $mail->SMTPSecure = 'tls';
-    //echo "<pre>";  print_r($mail);die;
     if(!$error){
       $send = $mail->send();
       if(!$send) {
@@ -68,30 +70,11 @@
         echo 'Email error: ' . $mail->ErrorInfo;
       } else {
         $success=1;
+        $page = $_SERVER['PHP_SELF'];
+        $sec = "3";
+        header("Refresh: $sec; url=$page");
       }
     }
-     /*  // Set Message
-    $message .= "<br /> ----- <br /> This email was sent from your site's contact form. <br />";
-
-
-       // Set From: header
-      $from =  $name . " <" . $email . ">";
-
-       // Email Headers
-      $headers = "From: " . $from . "\r\n";
-      $headers .= "Reply-To: ". $email . "\r\n";
-      $headers .= "MIME-Version: 1.0\r\n";
-      $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-      $siteOwnersEmail = 'bhaskar@ascratech.in';
-      if (!$error) {
-
-      //ini_set("sendmail_from", $siteOwnersEmail); // for windows server
-      $mail = mail($siteOwnersEmail, $subject, $message, $headers);
-        if ($mail) { $success=1; }
-        else { $success=0; }
-
-      } # end if - no validation error*/
 
     }
     
@@ -222,7 +205,7 @@
     			</div>
     			<div class="col-md-6 pl-md-5 py-md-5">
     				<div class="heading-section pl-md-4 pt-md-5">
-    					<span class="subheading">Welcome to Profit-max</span>
+    					<span class="subheading">Welcome to Profit-mart</span>
 	            <h2 class="mb-4">We Are the Best Broking Agency</h2>
     				</div>
     				<div class="services-2 w-100 d-flex">
@@ -338,7 +321,7 @@
     <footer class="footer">
 			<div class="container-fluid px-lg-5">
 				<div class="row">
-					<div class="col-md-9 py-5">
+					<div class="col-md-6 py-5">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="row justify-content-center">
@@ -360,15 +343,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mt-md-5">
-							<div class="col-md-12">
-								<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Profitmax <i class="fa fa-heart" aria-hidden="true"></i>
-					  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-							</div>
-						</div>
+						
 					</div>
-					<div class="col-md-3 py-md-5 py-4 aside-stretch-right pl-lg-5" id="contact_us">
+					<div class="col-md-6 py-md-6 py-6 aside-stretch-right pl-lg-6" id="contact_us">
 						<h2 class="footer-heading">Free consultation</h2>
 						<form action="index.php#contact_us" method="POST" class="form-consultation">
               <div class="form-group">
@@ -388,22 +365,50 @@
                <span style="color: red;"><?php echo !empty($error['mobile'])?$error['mobile']:''?></span>
               </div>
               <div class="form-group">
-                <textarea id="" cols="30" rows="3"  name="message" class="form-control" placeholder="Message"><?php echo !empty($Message)?$Message:'';?></textarea>
+                <textarea id="" cols="30" rows="3"  name="message" class="form-control" placeholder="Message"><?php echo !empty($contact_message)?$contact_message:'';?></textarea>
               <span style="color: red;"><?php echo !empty($error['message'])?$error['message']:''?></span>
               </div>
               <div><?php if(!empty($success)){
                 echo "<span style='color:green;'><b>Thankyou for your intrest, We will get back to you soon.</b></span>";
               }?></div>
               <div class="form-group">
-              	<button type="submit" class="form-control submit px-3">Send A Message</button>
+              	<button type="submit" class="form-control submit px-3 please-wait">Send A Message</button>
               </div>
             </form>
 					</div>
 				</div>
+        <div class="row">
+            <div class="col-md-12">
+              <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Profitmax <i class="fa fa-heart" aria-hidden="true"></i>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+          </div>
 			</div>
 		</footer>
-    
-  
+
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Welcome to profit-max</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <img src="images/free-11.gif" class="ml-5" width="120px">
+            <img src="images/free-11.gif" class="ml-5" width="120px">
+            <img src="images/free-11.gif" class="ml-5" width="120px">
+            <img src="images/free-11.gif" class="ml-5" width="120px">
+            <h6 class="text-justify"><b>Free</b> all segment calls, Just inquire to us, We will ready to serve you better services absolutly free.</h6>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
@@ -423,7 +428,18 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-    
+  <script>
+    $("#please-wait").click(function(){
+      this.text('Please wait...');
+    })
+
+    window.onload = function () {
+        setTimeout(function () {
+            $("#myModal").show();
+        });
+    }
+
+  </script>
   </body>
 </html>
 
