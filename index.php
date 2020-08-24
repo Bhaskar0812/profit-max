@@ -47,7 +47,7 @@
 // use wordwrap() if lines are longer than 70 characters
     
    $mail = new PHPMailer;
-    //$mail->IsSMTP();
+    $mail->IsSMTP();
     $mail->Host = 'ssl://email-smtp.us-east-2.amazonaws.com'; 
     $mail->SMTPAuth = true;
     $mail->Port = 587;
