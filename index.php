@@ -85,6 +85,12 @@
   <head>
     <title>Profit-mart</title>
     <meta charset="utf-8">
+     <meta name="description" content="Free Brokrage firm for stock market trading">
+    <meta name="keywords" content="Online Trading, Share Market, Intraday Tips,  
+                                   Option Market, MCX, Trading, Option, BSE, NSE,
+                                   Exchange,Margin,Short Selling,Bear Market,Bull Market,Money Control,Broker,Day Trading,High,Index,Initial Public Offering,IPO,Margin,Zerodha,Best stock broker, Free stock broker, stock broker in dewas, stock broker in indore, stock broker in mumbai, capital fedration, capital federation, investopedia,money control,Angel Broking,IIFL,India Infoline,Motilal Oswal,Sharekhan,Upstox,ICICI Direct,Edelweiss,HDFC Securities,5Paisa
+                                  ">
+    <meta name="author" content="Capital federation">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -112,11 +118,37 @@
     gtag('config', 'UA-176225087-1');
   </script>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-P3R5X8R');</script>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P3R5X8R');
+  </script>
+  <script type='application/ld+json'> 
+    {
+      "@context": "http://www.schema.org",
+      "@type": "AccountingService",
+      "name": "Capital Fedration",
+      "url": "www.capitalfedration.com",
+      "logo": "http://www.capitalfedration.in/images/Profitmart-Logo.png",
+      "description": "Online brokerage firm, to provide brokerage free of coast with lots of attractive offers",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dewas",
+        "addressLocality": "Dewas",
+        "addressRegion": "Madhya Pradesh",
+        "postalCode": "455001",
+        "addressCountry": "India"
+      },
+      "openingHours": "Mo, Tu, We, Th, Fr, Sa, Su 01:00-23:30",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "9691299845",
+        "contactType": "Mobile"
+      }
+    }
+  </script>
   <!-- End Google Tag Manager -->
     
   </head>
